@@ -2,10 +2,16 @@
 
 import { useState } from "react";
 
-export default function Quiz({ questions, topicId }: { questions: any[]; topicId: string }) {
+type Question = {
+  q: string;
+  options: string[];
+  a: string;
+};
+
+export default function Quiz({ questions, topicId }: { questions: Question[]; topicId: string }) {
   const [answers, setAnswers] = useState<string[]>(Array(questions.length).fill(""));
   const [score, setScore] = useState<number | null>(null);
-  const [results, setResults] = useState<boolean[]>([]); // ✅ әр сұрақтың нәтижесі
+  const [results, setResults] = useState<boolean[]>([]); // әр сұрақтың нәтижесі
 
   const handleFinish = () => {
     let correct = 0;
@@ -21,7 +27,7 @@ export default function Quiz({ questions, topicId }: { questions: any[]; topicId
     });
 
     setScore(correct);
-    setResults(res); // ✅ әр сұрақтың нәтижесін сақтаймыз
+    setResults(res); // әр сұрақтың нәтижесін сақтаймыз
   };
 
   return (
@@ -41,7 +47,7 @@ export default function Quiz({ questions, topicId }: { questions: any[]; topicId
         >
           <p className="font-medium">{i + 1}. {q.q}</p>
           <div className="mt-2 space-y-2">
-            {q.options.map((opt: string, j: number) => (
+            {q.options.map((opt, j) => (
               <label key={j} className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -59,7 +65,7 @@ export default function Quiz({ questions, topicId }: { questions: any[]; topicId
             ))}
           </div>
 
-          {/* ✅ Егер қате болса дұрыс жауапты көрсетеміз */}
+          {/* Егер қате болса дұрыс жауапты көрсетеміз */}
           {results.length > 0 && !results[i] && (
             <p className="mt-2 text-sm text-red-700">
               ❌ Дұрыс жауап: <b>{q.a}</b>
