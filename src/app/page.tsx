@@ -35,7 +35,7 @@ export default function HomePage() {
         ) : (
           <>
             <Link
-              href="/auth/signin"
+              href="/auth/sign_in"
               className="bg-white text-blue-600 font-semibold px-6 py-3 rounded-xl shadow hover:bg-blue-100 transition"
             >
               Кіру
