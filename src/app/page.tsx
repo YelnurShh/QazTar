@@ -33,7 +33,7 @@ export default function HomePage() {
     <main className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 to-blue-400 text-white px-4 md:px-8">
       {/* 🔹 Header */}
       <header className="w-full flex justify-between items-center py-4">
-        <h1 className="text-xl md:text-2xl font-bold">🇰🇿 QAZTAR</h1>
+        <h1 className="text-xl md:text-2xl font-bold"></h1>
 
         <div className="flex gap-2 md:gap-4">
           {loading ? null : user ? (
