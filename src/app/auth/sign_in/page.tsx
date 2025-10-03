@@ -26,28 +26,45 @@ export default function SignInPage() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "50px auto" }}>
-      <h1>Кіру</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Құпиясөз"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <br />
-        <button type="submit">Кіру</button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6 text-center text-blue-700">
+          Кіру
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+          <input
+            type="password"
+            placeholder="Құпиясөз"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
+          >
+            Кіру
+          </button>
+        </form>
+        {error && (
+          <p className="text-red-500 text-sm text-center mt-4">{error}</p>
+        )}
+        <p className="text-sm text-gray-600 text-center mt-6">
+          Аккаунтыңыз жоқ па?{" "}
+          <a href="./signup" className="text-blue-600 font-semibold hover:underline">
+            Тіркелу
+          </a>
+        </p>
+      </div>
     </div>
   );
 }

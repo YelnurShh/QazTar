@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { auth, db } from "@/lib/firebase";
+import { doc, updateDoc, increment } from "firebase/firestore";
 
 type Question = {
   q: string;
@@ -8,12 +10,20 @@ type Question = {
   a: string;
 };
 
-export default function Quiz({ questions, topicId }: { questions: Question[]; topicId: string }) {
+export default function Quiz({
+  questions,
+  topicId,
+}: {
+  questions: Question[];
+  topicId: string;
+}) {
   const [answers, setAnswers] = useState<string[]>(Array(questions.length).fill(""));
   const [score, setScore] = useState<number | null>(null);
-  const [results, setResults] = useState<boolean[]>([]); // әр сұрақтың нәтижесі
+  const [pointsEarned, setPointsEarned] = useState<number>(0); // ✅ ұпайды бөлек сақтаймыз
+  const [results, setResults] = useState<boolean[]>([]);
+  const [saved, setSaved] = useState(false);
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     let correct = 0;
     const res: boolean[] = [];
 
@@ -26,8 +36,24 @@ export default function Quiz({ questions, topicId }: { questions: Question[]; to
       }
     });
 
+    const pointsToAdd = correct * 10; // әр дұрыс жауап = 10 ұпай
     setScore(correct);
-    setResults(res); // әр сұрақтың нәтижесін сақтаймыз
+    setResults(res);
+    setPointsEarned(pointsToAdd);
+
+    // ✅ Ұпайды профильге қосу
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        await updateDoc(userRef, {
+          points: increment(pointsToAdd),
+        });
+        setSaved(true);
+      }
+    } catch (error) {
+      console.error("Ұпайды сақтау кезінде қате:", error);
+    }
   };
 
   return (
@@ -65,7 +91,6 @@ export default function Quiz({ questions, topicId }: { questions: Question[]; to
             ))}
           </div>
 
-          {/* Егер қате болса дұрыс жауапты көрсетеміз */}
           {results.length > 0 && !results[i] && (
             <p className="mt-2 text-sm text-red-700">
               ❌ Дұрыс жауап: <b>{q.a}</b>
@@ -76,14 +101,22 @@ export default function Quiz({ questions, topicId }: { questions: Question[]; to
 
       <button
         onClick={handleFinish}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+        disabled={score !== null}
+        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
       >
         ✅ Аяқтау
       </button>
 
       {score !== null && (
-        <p className="mt-4 font-bold">
-          Сіздің нәтижеңіз: {score}/{questions.length} балл 🎉
+        <div className="mt-4 font-bold space-y-2">
+          <p>Сіздің нәтижеңіз: {score}/{questions.length} сұрақ ✅</p>
+          <p>Жиналған ұпай: {pointsEarned} 🏅</p>
+        </div>
+      )}
+
+      {saved && (
+        <p className="mt-2 text-green-600 font-medium">
+          ✅ Ұпай сәтті профильге қосылды!
         </p>
       )}
     </div>
