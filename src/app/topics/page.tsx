@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Search } from "lucide-react";
 
 const topics = [
   { id: "kazakh-khanate", title: "Қазақ хандығының құрылуы" },
@@ -57,21 +56,22 @@ export default function TopicsPage() {
         onSubmit={handleSearch}
         className="max-w-2xl mx-auto mb-6 flex gap-2"
       >
-              <input
-        type="text"
-        placeholder="Кез келген тарихи тақырыпты іздеңіз..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="w-full p-3 rounded-lg text-white border-2 border-white placeholder-white caret-white"
-            />
+        <input
+          type="text"
+          placeholder="Кез келген тарихи тақырыпты іздеңіз..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full p-3 rounded-lg text-white border-2 border-white placeholder-white caret-white bg-transparent"
+        />
 
         <button
-  type="submit"
-  className="flex items-center gap-2 px-4 py-2 bg-white text-blue-700 font-bold rounded-lg shadow hover:bg-blue-100"
->
-  <Search size={18} />
-  Іздеу
-</button>
+          type="submit"
+          className="flex items-center gap-2 px-4 py-2 bg-white text-blue-700 font-bold rounded-lg shadow hover:bg-blue-100 transition"
+        >
+          {/* 🔍 Unicode icon */}
+          <span className="text-lg">🔍</span>
+          Іздеу
+        </button>
       </form>
 
       {/* 🔹 Нәтиже */}
