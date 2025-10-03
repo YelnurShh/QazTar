@@ -12,7 +12,7 @@ type Question = {
 
 export default function Quiz({
   questions,
-  topicId: _topicId, // ✅ unused warning кету үшін _ қойдық
+  topicId: _topicId,
 }: {
   questions: Question[];
   topicId: string;
@@ -22,8 +22,15 @@ export default function Quiz({
   const [pointsEarned, setPointsEarned] = useState<number>(0);
   const [results, setResults] = useState<boolean[]>([]);
   const [saved, setSaved] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
   const handleFinish = async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      setErrorMsg("Тестті аяқтау үшін алдымен жүйеге кіріңіз ✅");
+      return;
+    }
+
     let correct = 0;
     const res: boolean[] = [];
 
@@ -36,21 +43,17 @@ export default function Quiz({
       }
     });
 
-    const pointsToAdd = correct * 10; // әр дұрыс жауап = 10 ұпай
+    const pointsToAdd = correct * 10;
     setScore(correct);
     setResults(res);
     setPointsEarned(pointsToAdd);
 
-    // ✅ Ұпайды Firestore-ға сақтау
     try {
-      const user = auth.currentUser;
-      if (user) {
-        const userRef = doc(db, "users", user.uid);
-        await updateDoc(userRef, {
-          points: increment(pointsToAdd),
-        });
-        setSaved(true);
-      }
+      const userRef = doc(db, "users", user.uid);
+      await updateDoc(userRef, {
+        points: increment(pointsToAdd),
+      });
+      setSaved(true);
     } catch (error) {
       console.error("Ұпайды сақтау кезінде қате:", error);
     }
@@ -99,6 +102,7 @@ export default function Quiz({
         </div>
       ))}
 
+      {/* ✅ Аяқтау батырмасы */}
       <button
         onClick={handleFinish}
         disabled={score !== null}
@@ -106,6 +110,11 @@ export default function Quiz({
       >
         ✅ Аяқтау
       </button>
+
+      {/* 📢 Қате немесе ескерту */}
+      {errorMsg && (
+        <p className="mt-3 text-red-600 font-medium">{errorMsg}</p>
+      )}
 
       {score !== null && (
         <div className="mt-4 font-bold space-y-2">

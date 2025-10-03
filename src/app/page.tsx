@@ -31,36 +31,6 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 to-blue-400 text-white px-4 md:px-8">
-      {/* 🔹 Header */}
-      <header className="w-full flex justify-between items-center py-4">
-        <h1 className="text-xl md:text-2xl font-bold"></h1>
-
-        <div className="flex gap-2 md:gap-4">
-          {loading ? null : user ? (
-            <Link
-              href="/profile"
-              className="bg-white text-blue-600 text-sm md:text-base font-semibold px-3 md:px-4 py-2 rounded-xl shadow hover:bg-blue-100 transition"
-            >
-              Профиль
-            </Link>
-          ) : (
-            <>
-              <Link
-                href="/auth/sign_in"
-                className="bg-white text-blue-600 text-sm md:text-base font-semibold px-3 md:px-4 py-2 rounded-xl shadow hover:bg-blue-100 transition"
-              >
-                Кіру
-              </Link>
-              <Link
-                href="/auth/signup"
-                className="bg-yellow-400 text-blue-900 text-sm md:text-base font-semibold px-3 md:px-4 py-2 rounded-xl shadow hover:bg-yellow-300 transition"
-              >
-                Тіркелу
-              </Link>
-            </>
-          )}
-        </div>
-      </header>
 
       {/* 🔹 Контент */}
       <div className="flex flex-col items-center justify-center flex-1 text-center">

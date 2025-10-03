@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // статикалық сайт ретінде экспорт
+  output: 'export',
+  images: {
+    unoptimized: true, // 🟡 ⬅️ Міне осы жолды қосу керек
+  },
 };
 
 module.exports = nextConfig;
