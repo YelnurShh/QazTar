@@ -19,7 +19,7 @@ export default function RootLayout({
         <Header />
 
         {/* 🔹 Негізгі контент */}
-        <main className="flex-1 px-6 py-8 bg-transparent">
+        <main className="flex-1 bg-transparent">
           {children}
         </main>
 
