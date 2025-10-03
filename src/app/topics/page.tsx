@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image"; // ✅ Next.js Image қолданамыз
+
+// ✅ Wikipedia API нәтижесінің типі
+type WikiResult = {
+  title: string;
+  extract: string;
+  thumbnail?: { source: string };
+  content_urls?: { desktop?: { page?: string } };
+};
 
 const topics = [
   { id: "kazakh-khanate", title: "Қазақ хандығының құрылуы" },
@@ -13,7 +22,7 @@ const topics = [
 
 export default function TopicsPage() {
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<WikiResult | null>(null); // ✅ any орнына нақты тип
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,22 +30,18 @@ export default function TopicsPage() {
 
     try {
       const res = await fetch(
-        `https://kk.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-          query
-        )}`
+        `https://kk.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`
       );
       const data = await res.json();
       setResult(data);
-    } catch (err) {
-      setResult({ extract: "Ақпарат табылмады." });
+    } catch {
+      setResult({ title: "Қате", extract: "Ақпарат табылмады." });
     }
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-400 text-white p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        Тарихи тақырыптар
-      </h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Тарихи тақырыптар</h1>
 
       {/* 🔹 Статикалық тақырыптар */}
       <div className="grid gap-4 max-w-2xl mx-auto mb-8">
@@ -52,10 +57,7 @@ export default function TopicsPage() {
       </div>
 
       {/* 🔹 Іздеу жолағы */}
-      <form
-        onSubmit={handleSearch}
-        className="max-w-2xl mx-auto mb-6 flex gap-2"
-      >
+      <form onSubmit={handleSearch} className="max-w-2xl mx-auto mb-6 flex gap-2">
         <input
           type="text"
           placeholder="Кез келген тарихи тақырыпты іздеңіз..."
@@ -68,9 +70,7 @@ export default function TopicsPage() {
           type="submit"
           className="flex items-center gap-2 px-4 py-2 bg-white text-blue-700 font-bold rounded-lg shadow hover:bg-blue-100 transition"
         >
-          {/* 🔍 Unicode icon */}
-          <span className="text-lg">🔍</span>
-          Іздеу
+          🔍 Іздеу
         </button>
       </form>
 
@@ -78,9 +78,11 @@ export default function TopicsPage() {
       {result && (
         <div className="max-w-2xl mx-auto bg-white text-black p-4 rounded-lg shadow">
           {result.thumbnail && (
-            <img
+            <Image
               src={result.thumbnail.source}
               alt={result.title}
+              width={600}
+              height={300}
               className="mb-4 rounded"
             />
           )}

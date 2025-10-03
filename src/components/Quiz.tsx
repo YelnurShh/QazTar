@@ -12,14 +12,14 @@ type Question = {
 
 export default function Quiz({
   questions,
-  topicId,
+  topicId: _topicId, // ✅ unused warning кету үшін _ қойдық
 }: {
   questions: Question[];
   topicId: string;
 }) {
   const [answers, setAnswers] = useState<string[]>(Array(questions.length).fill(""));
   const [score, setScore] = useState<number | null>(null);
-  const [pointsEarned, setPointsEarned] = useState<number>(0); // ✅ ұпайды бөлек сақтаймыз
+  const [pointsEarned, setPointsEarned] = useState<number>(0);
   const [results, setResults] = useState<boolean[]>([]);
   const [saved, setSaved] = useState(false);
 
@@ -41,7 +41,7 @@ export default function Quiz({
     setResults(res);
     setPointsEarned(pointsToAdd);
 
-    // ✅ Ұпайды профильге қосу
+    // ✅ Ұпайды Firestore-ға сақтау
     try {
       const user = auth.currentUser;
       if (user) {
