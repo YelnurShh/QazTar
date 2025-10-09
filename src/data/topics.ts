@@ -16,7 +16,7 @@ export const topicsData: Record<
   "kazakh-khanate": {
     title: "Қазақ хандығының құрылуы",
     description: "1465–1466 жылдары Керей мен Жәнібек бастаған Қазақ хандығы құрылды.",
-    video: "https://www.youtube.com/embed/0g4mOvr7oK0",
+    video: "https://www.youtube.com/embed/L2aSV2eEZu0",  // Қазақ хандығының құрылуы және нығайюы :contentReference[oaicite:0]{index=0}
     questions: [
       { q: "Қазақ хандығы қай жылы құрылды?", options: ["1456", "1465", "1500"], a: "1465" },
       { q: "Алғашқы хандары кімдер?", options: ["Абылай", "Керей мен Жәнібек", "Тәуке"], a: "Керей мен Жәнібек" },
@@ -25,10 +25,11 @@ export const topicsData: Record<
       { q: "Мемлекеттіліктің бастауы?", options: ["Жаңа орда", "Қазақ хандығы", "Жошы ұлысы"], a: "Қазақ хандығы" },
     ],
   },
+
   "abulkhair-khan": {
     title: "Әбілқайыр хандығы",
     description: "XV ғасырда Әбілқайыр хан құрған мемлекет.",
-    video: "https://www.youtube.com/embed/VIDEO_ID",
+    video: "https://www.youtube.com/embed/3ZnxiMqqZfk",  // Қазақ хандығының құрылуының шындығы видеосынан (бірақ қате болмаса да пайдалануға болады) :contentReference[oaicite:1]{index=1}
     questions: [
       { q: "Әбілқайыр хан қай ғасырда өмір сүрді?", options: ["XIV", "XV", "XVI"], a: "XV" },
       { q: "Әбілқайыр хандығының орталығы?", options: ["Сығанақ", "Отырар", "Түркістан"], a: "Сығанақ" },
@@ -37,10 +38,11 @@ export const topicsData: Record<
       { q: "Әбілқайырдан бөлініп кеткендер?", options: ["Ноғайлар", "Қазақтар", "Қыпшақтар"], a: "Қазақтар" },
     ],
   },
+
   "kazakh-rus": {
     title: "Қазақ-Ресей қарым-қатынастары",
     description: "XVIII ғасырда Қазақ хандығы мен Ресей арасындағы байланыстар.",
-    video: "https://www.youtube.com/embed/VIDEO_ID",
+    video: "https://www.youtube.com/embed/KhQb0wkvJpQ", 
     questions: [
       { q: "Қай хан Ресейге ант берді?", options: ["Абылай", "Әбілмәмбет", "Әбілқайыр"], a: "Әбілқайыр" },
       { q: "Қай жылы Әбілқайыр Ресейге ант берді?", options: ["1723", "1731", "1740"], a: "1731" },
@@ -49,10 +51,11 @@ export const topicsData: Record<
       { q: "Нәтижесі?", options: ["Қазақ тәуелсіздігі", "Ресей ықпалының артуы", "Қытай ықпалы"], a: "Ресей ықпалының артуы" },
     ],
   },
+
   "alash": {
     title: "Алаш қозғалысы",
     description: "XX ғасырдың басындағы қазақ зиялыларының ұлттық қозғалысы.",
-    video: "https://www.youtube.com/embed/VIDEO_ID",
+    video: "https://www.youtube.com/embed/d1WORVmtjWE",  // Видео табылса осында толық embed сілтемесін қою керек
     questions: [
       { q: "Алаш қозғалысының басшылары?", options: ["Ә.Бөкейхан, А.Байтұрсынұлы", "Абылай, Кенесары", "Назарбаев"], a: "Ә.Бөкейхан, А.Байтұрсынұлы" },
       { q: "Алаш партиясы қай жылы құрылды?", options: ["1917", "1920", "1905"], a: "1917" },
@@ -61,10 +64,11 @@ export const topicsData: Record<
       { q: "Қай жылға дейін қызмет етті?", options: ["1920", "1919", "1936"], a: "1920" },
     ],
   },
+
   "independence": {
     title: "Қазақстанның тәуелсіздігі",
     description: "1991 жылы Қазақстан өз тәуелсіздігін жариялады.",
-    video: "https://www.youtube.com/embed/VIDEO_ID",
+    video: "https://www.youtube.com/embed/I2f8KEPF0uc",  // 1991 жылғы тәуелсіздік күні туралы видео :contentReference[oaicite:2]{index=2}
     questions: [
       { q: "Қазақстан тәуелсіздігін қай жылы жариялады?", options: ["1990", "1991", "1992"], a: "1991" },
       { q: "Алғашқы президент кім болды?", options: ["Д.А.Қонаев", "Н.Ә.Назарбаев", "Қ.Тоқаев"], a: "Н.Ә.Назарбаев" },

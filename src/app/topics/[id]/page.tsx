@@ -5,8 +5,13 @@ export async function generateStaticParams() {
   return Object.keys(topicsData).map((id) => ({ id }));
 }
 
-export default function TopicDetailPage({ params }: { params: { id: keyof typeof topicsData } }) {
-  const topic = topicsData[params.id];
+export default async function TopicDetailPage({
+  params,
+}: {
+  params: Promise<{ id: keyof typeof topicsData }>;
+}) {
+  const { id } = await params;
+  const topic = topicsData[id]; // ✅ Енді тип қатесі жоқ
 
   if (!topic) return <p className="text-center p-10">Тақырып табылмады 😢</p>;
 
@@ -23,7 +28,7 @@ export default function TopicDetailPage({ params }: { params: { id: keyof typeof
           className="w-full rounded-xl shadow-lg mb-8"
           allowFullScreen
         ></iframe>
-        <Quiz questions={topic.questions} topicId={params.id} />
+        <Quiz questions={topic.questions} topicId={id} />
       </div>
     </main>
   );
