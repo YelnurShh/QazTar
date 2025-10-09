@@ -55,7 +55,7 @@ export const topicsData: Record<
   "alash": {
     title: "Алаш қозғалысы",
     description: "XX ғасырдың басындағы қазақ зиялыларының ұлттық қозғалысы.",
-    video: "https://www.youtube.com/embed/d1WORVmtjWE",  // Видео табылса осында толық embed сілтемесін қою керек
+    video: "https://www.youtube.com/embed/d1WORVmtjWE",
     questions: [
       { q: "Алаш қозғалысының басшылары?", options: ["Ә.Бөкейхан, А.Байтұрсынұлы", "Абылай, Кенесары", "Назарбаев"], a: "Ә.Бөкейхан, А.Байтұрсынұлы" },
       { q: "Алаш партиясы қай жылы құрылды?", options: ["1917", "1920", "1905"], a: "1917" },
@@ -68,7 +68,7 @@ export const topicsData: Record<
   "independence": {
     title: "Қазақстанның тәуелсіздігі",
     description: "1991 жылы Қазақстан өз тәуелсіздігін жариялады.",
-    video: "https://www.youtube.com/embed/I2f8KEPF0uc",  // 1991 жылғы тәуелсіздік күні туралы видео :contentReference[oaicite:2]{index=2}
+    video: "https://www.youtube.com/embed/I2f8KEPF0uc", 
     questions: [
       { q: "Қазақстан тәуелсіздігін қай жылы жариялады?", options: ["1990", "1991", "1992"], a: "1991" },
       { q: "Алғашқы президент кім болды?", options: ["Д.А.Қонаев", "Н.Ә.Назарбаев", "Қ.Тоқаев"], a: "Н.Ә.Назарбаев" },
